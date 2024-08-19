@@ -5,10 +5,14 @@ This web application allows users to manage a collection of books. Users can per
 
 ## Screenshots
 
-Create Book: ![alt text](create.png)
-Listing page: ![alt text](listing.png)
-Edit page: ![alt text](edit.png)
-Delete page: ![alt text](delete.png)
+| Action        | Screenshot                         |
+|---------------|------------------------------------|
+| Create Book   | ![Create Book](create.png)         |
+| Listing Page  | ![Listing Page](listing.png)       |
+| Edit Page     | ![Edit Page](edit.png)             |
+| Delete Page   | ![Delete Page](delete.png)         |
+
+
 
 
 ## Getting Started
