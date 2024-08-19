@@ -7,5 +7,5 @@ public class ApplicationDbContext: DbContext {
 
     }
 
-    public DbSet<BooksEntity> Books {get;}
+    public DbSet<BooksEntity> Books {get; set;}
 }
