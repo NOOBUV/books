@@ -1,0 +1,97 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+*.userprefs
+
+# Visual Studio 2019/2022
+.vscode/
+.vs/
+.vscode/settings.json
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vscode/.mono/temp/
+.vscode/.mono/temp/*
+
+# Rider
+.idea/
+.idea/*
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuget/packages/
+.nuget/
+
+# NPM
+node_modules/
+
+# Yarn
+.yarn/
+.yarnrc.yml
+.pnp.*
+.pnp/*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Cloud storage
+*.DS_Store
+.DS_Store?
+
+# Files that might appear on external disk drives
+.Spotlight-V100
+.Trashes
+
+# macOS
+*.swp
+*.swo
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+# KDE directory preferences
+.directory
+
+# Windows
+*.lnk
+*.url
+*.bat
+*.sh
+*.cmd
+
+# JetBrains Rider project files
+.idea/
+
+# DotNet User Specific Files
+*.rsuser
+
+# NUnit
+TestResult.xml
