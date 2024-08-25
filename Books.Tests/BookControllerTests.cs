@@ -45,7 +45,146 @@ namespace Books.Tests
             Assert.Equal(2, model.Count());
         }
 
-        // Additional tests for Create, Edit, Delete actions...
+        [Fact]
+        public void Create_ReturnsViewResult()
+        {
+            // Act
+            var result = _controller.Create();
+
+            // Assert
+            Assert.IsType<ViewResult>(result);
+        }
+
+        [Fact]
+        public void Create_ValidModel_RedirectsToIndex()
+        {
+            // Arrange
+            var book = new BooksEntity { Title = "New Book", Author = "New Author", ISBN = "1234567890" };
+
+            // Act
+            var result = _controller.Create(book);
+
+            // Assert
+            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", redirectToActionResult.ActionName);
+        }
+
+        [Fact]
+        public void Create_InvalidModel_ReturnsViewWithModel()
+        {
+            // Arrange
+            _controller.ModelState.AddModelError("Title", "Required");
+            var book = new BooksEntity();
+
+            // Act
+            var result = _controller.Create(book);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.Equal(book, viewResult.Model);
+        }
+
+        [Fact]
+        public void Edit_ValidId_ReturnsViewResultWithBook()
+        {
+            // Arrange
+            var book = new BooksEntity { Id = 1, Title = "Book 1", Author = "Author 1", ISBN = "1234567890" };
+            _mockContext.Setup(db => db.Books.Find(1)).Returns(book);
+
+            // Act
+            var result = _controller.Edit(1);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsType<BooksEntity>(viewResult.Model);
+            Assert.Equal(1, model.Id);
+        }
+
+        [Fact]
+        public void Edit_InvalidId_ReturnsNotFound()
+        {
+            // Arrange
+            _mockContext.Setup(db => db.Books.Find(1)).Returns((BooksEntity)null);
+
+            // Act
+            var result = _controller.Edit(1);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public void Edit_ValidModel_RedirectsToIndex()
+        {
+            // Arrange
+            var book = new BooksEntity { Id = 1, Title = "Updated Book", Author = "Updated Author", ISBN = "1234567890" };
+
+            // Act
+            var result = _controller.Edit(book);
+
+            // Assert
+            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", redirectToActionResult.ActionName);
+        }
+
+        [Fact]
+        public void Edit_InvalidModel_ReturnsViewWithModel()
+        {
+            // Arrange
+            _controller.ModelState.AddModelError("Title", "Required");
+            var book = new BooksEntity();
+
+            // Act
+            var result = _controller.Edit(book);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            Assert.Equal(book, viewResult.Model);
+        }
+
+        [Fact]
+        public void Delete_ValidId_ReturnsViewResultWithBook()
+        {
+            // Arrange
+            var book = new BooksEntity { Id = 1, Title = "Book 1", Author = "Author 1", ISBN = "1234567890" };
+            _mockContext.Setup(db => db.Books.Find(1)).Returns(book);
+
+            // Act
+            var result = _controller.Delete(1);
+
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsType<BooksEntity>(viewResult.Model);
+            Assert.Equal(1, model.Id);
+        }
+
+        [Fact]
+        public void Delete_InvalidId_ReturnsNotFound()
+        {
+            // Arrange
+            _mockContext.Setup(db => db.Books.Find(1)).Returns((BooksEntity)null);
+
+            // Act
+            var result = _controller.Delete(1);
+
+            // Assert
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Fact]
+        public void DeleteConfirmed_ValidId_RedirectsToIndex()
+        {
+            // Arrange
+            var book = new BooksEntity { Id = 1, Title = "Book 1", Author = "Author 1", ISBN = "1234567890" };
+            _mockContext.Setup(db => db.Books.Find(1)).Returns(book);
+
+            // Act
+            var result = _controller.DeleteConfirmed(1);
+
+            // Assert
+            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("Index", redirectToActionResult.ActionName);
+        }
     }
 
     public static class DbSetMockingExtensions
